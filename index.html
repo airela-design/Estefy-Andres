@@ -13,11 +13,11 @@
 
   <style>
     /* =========================================
-       PALETA DE COLORES (VINO ROJO MÁS CLARO)
+       PALETA DE COLORES (ROJO VINO MÁS CLARO)
     ========================================= */
     :root {
-      --burgundy: #7d1c2b; /* Vino tinto más cálido y claro */
-      --burgundy-dark: #520f1a;
+      --burgundy: #8b1e2d; /* Rojo vino tinto más claro y vivo */
+      --burgundy-dark: #63121d;
       --cream: #f7f1e8;
       --paper: #fffaf3;
       --gold-light: #fbe3ad;
@@ -86,7 +86,7 @@
       font-weight: 300;
       letter-spacing: 4px;
       text-transform: uppercase;
-      color: rgba(125, 28, 43, .65);
+      color: rgba(139, 30, 45, .7);
     }
 
     /* =========================================
@@ -104,7 +104,7 @@
       position: relative;
       width: 100%;
       aspect-ratio: 1.42 / 1;
-      filter: drop-shadow(0 20px 24px rgba(82,15,26,.18));
+      filter: drop-shadow(0 20px 24px rgba(99,18,29,.2));
     }
 
     .envelope-back {
@@ -121,7 +121,7 @@
       left: 7px;
       right: 7px;
       height: 74%;
-      background: linear-gradient(160deg, #942536 0%, #7d1c2b 50%, #520f1a 100%);
+      background: linear-gradient(160deg, #a62637 0%, #8b1e2d 50%, #63121d 100%);
       clip-path: polygon(0 0, 100% 0, 50% 100%);
     }
 
@@ -137,7 +137,7 @@
       align-items: center;
       justify-content: center;
       background: var(--paper);
-      border: 1px solid rgba(125, 28, 43, .25);
+      border: 1px solid rgba(139, 30, 45, .25);
       transition: transform 1.5s cubic-bezier(.16, .83, .28, 1);
     }
 
@@ -145,10 +145,10 @@
       content: "";
       position: absolute;
       inset: 8px;
-      border: 1px solid rgba(125, 28, 43, .72);
+      border: 1px solid rgba(139, 30, 45, .75);
     }
 
-    /* MONOGRAMA ENTRELAZADO VERTICAL (E&A) */
+    /* MONOGRAMA ENTRELAZADO VERTICAL "EA" */
     .monogram-interlocked {
       position: relative;
       display: flex;
@@ -160,14 +160,14 @@
     }
 
     .monogram-interlocked .letter-e {
-      font-size: 58px;
-      transform: translate(8px, -12px);
+      font-size: 62px;
+      transform: translate(10px, -14px);
       z-index: 1;
     }
 
     .monogram-interlocked .letter-a {
-      font-size: 64px;
-      transform: translate(-8px, 10px);
+      font-size: 68px;
+      transform: translate(-10px, 12px);
       z-index: 2;
     }
 
@@ -204,13 +204,13 @@
     .flap-back {
       position: absolute;
       inset: 0;
-      background: linear-gradient(160deg, #942536, #520f1a);
+      background: linear-gradient(160deg, #a62637, #63121d);
       clip-path: polygon(0 0, 100% 0, 50% 100%);
       transform: rotateX(180deg);
       backface-visibility: hidden;
     }
 
-    /* SELLO DE CERA ESTAMPADO */
+    /* SELLO DE LACRE */
     .seal {
       position: absolute;
       z-index: 10;
@@ -263,7 +263,7 @@
       font-weight: 300;
       text-transform: uppercase;
       letter-spacing: 3.5px;
-      color: rgba(125, 28, 43, .62);
+      color: rgba(139, 30, 45, .65);
       animation: pulse 2.2s infinite;
     }
 
@@ -302,7 +302,7 @@
       width: min(710px, 100%);
       padding: 9px;
       background: var(--paper);
-      box-shadow: 0 22px 60px rgba(82, 15, 26, .09);
+      box-shadow: 0 22px 60px rgba(99, 18, 29, .1);
     }
 
     .paper-border {
@@ -316,11 +316,11 @@
       content: "";
       position: absolute;
       inset: 7px;
-      border: 1px solid rgba(125, 28, 43, .84);
+      border: 1px solid rgba(139, 30, 45, .85);
       pointer-events: none;
     }
 
-    /* TÍTULO PRINCIPAL (Mayúsculas Iniciales) */
+    /* TÍTULO PRINCIPAL */
     .main-title {
       position: relative;
       z-index: 2;
@@ -407,7 +407,7 @@
     .place a {
       color: var(--burgundy);
       text-decoration: none;
-      border-bottom: 1px solid rgba(125, 28, 43, .35);
+      border-bottom: 1px solid rgba(139, 30, 45, .35);
       padding-bottom: 2px;
     }
 
@@ -575,4 +575,4 @@
     });
   </script>
 </body>
-</html>     
+</html>
