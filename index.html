@@ -9,21 +9,22 @@
   <!-- TIPOGRAFÍAS -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=Montserrat:wght@300;400&family=Pinyon+Script&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=Great+Vibes&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
 
   <style>
     /* =========================================
-       PALETA
+       PALETA Y VARIABLES
     ========================================= */
     :root {
       --burgundy: #681725;
       --burgundy-dark: #4b0d18;
       --cream: #f7f1e8;
       --paper: #fffaf3;
-      --paper-shadow: #eee3d7;
-      --gold-light: #e5c77e;
-      --gold: #c49a52;
-      --gold-dark: #906322;
+      --gold-light: #f3e3ad;
+      --gold-mid: #d4a755;
+      --gold-base: #b08130;
+      --gold-dark: #6e4b10;
+      --gold-shadow: #422a03;
     }
 
     /* =========================================
@@ -43,32 +44,6 @@
       background: var(--cream);
       color: var(--burgundy);
       font-family: "Bodoni Moda", serif;
-    }
-
-    /* =========================================
-       MONOGRAMA E & A
-    ========================================= */
-    .monogram {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--burgundy);
-      white-space: nowrap;
-    }
-
-    .monogram .letter {
-      font-family: "Pinyon Script", cursive;
-      font-weight: 400;
-      line-height: .8;
-    }
-
-    .monogram .ampersand {
-      font-family: "Bodoni Moda", serif;
-      font-style: italic;
-      font-weight: 400;
-      line-height: 1;
-      margin: 0 .13em;
-      transform: translateY(.03em);
     }
 
     /* =========================================
@@ -153,9 +128,7 @@
       clip-path: polygon(0 0, 100% 0, 50% 100%);
     }
 
-    /* =========================================
-       TARJETA DENTRO DEL SOBRE
-    ========================================= */
+    /* TARJETA INTERNA */
     .preview-card {
       position: absolute;
       z-index: 3;
@@ -179,22 +152,12 @@
     }
 
     .preview-monogram {
-      position: relative;
-      z-index: 2;
+      font-family: "Great Vibes", cursive;
+      font-size: 52px;
+      color: var(--burgundy);
     }
 
-    .preview-monogram .letter {
-      font-size: 72px;
-    }
-
-    .preview-monogram .ampersand {
-      font-size: 27px;
-      margin: 0 6px;
-    }
-
-    /* =========================================
-       FRENTE DEL SOBRE
-    ========================================= */
+    /* FRENTE SOBRE */
     .envelope-front {
       position: absolute;
       inset: 0;
@@ -203,17 +166,7 @@
       clip-path: polygon(0 26%, 50% 69%, 100% 26%, 100% 100%, 0 100%);
     }
 
-    .envelope-front::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      opacity: .32;
-      background: linear-gradient(34deg, transparent 49.8%, rgba(105,75,65,.20) 50%, transparent 50.2%);
-    }
-
-    /* =========================================
-       SOLAPA
-    ========================================= */
+    /* SOLAPA */
     .flap {
       position: absolute;
       width: 100%;
@@ -244,56 +197,66 @@
     }
 
     /* =========================================
-       SELLO DORADO
+       SELLO DE LACRE REALISTA (3D ORGANICO)
     ========================================= */
     .seal {
       position: absolute;
       z-index: 10;
-      width: 76px;
-      height: 76px;
+      width: 86px;
+      height: 86px;
       left: 50%;
       top: 51%;
       transform: translate(-50%, -50%);
       display: flex;
       align-items: center;
       justify-content: center;
-      border-radius: 47% 53% 45% 55% / 54% 44% 56% 46%;
+      /* Borde orgánico irregular tipo cera derretida */
+      border-radius: 48% 52% 44% 56% / 53% 45% 55% 47%;
       background: 
-        radial-gradient(circle at 35% 28%, var(--gold-light), transparent 14%),
-        radial-gradient(circle, #d1aa61, var(--gold) 60%, var(--gold-dark));
+        radial-gradient(circle at 30% 25%, var(--gold-light) 0%, transparent 20%),
+        radial-gradient(circle at 70% 75%, var(--gold-dark) 0%, transparent 40%),
+        linear-gradient(135deg, var(--gold-mid) 0%, var(--gold-base) 50%, var(--gold-dark) 100%);
       box-shadow: 
-        0 5px 12px rgba(48,27,5,.32),
-        inset 0 0 0 3px rgba(255,238,185,.30);
+        0 8px 18px rgba(0, 0, 0, 0.35),
+        inset 0 3px 6px rgba(255, 255, 255, 0.4),
+        inset 0 -4px 8px var(--gold-shadow);
       transition: opacity .4s ease, transform .45s ease;
     }
 
-    .seal::before {
+    /* Anillos grabaos interiores en el sello */
+    .seal-inner-ring {
+      position: absolute;
+      inset: 8px;
+      border-radius: 50%;
+      border: 2px solid var(--gold-dark);
+      box-shadow: 
+        inset 0 1px 3px var(--gold-shadow),
+        0 1px 2px rgba(255, 255, 255, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .seal-inner-ring::before {
       content: "";
       position: absolute;
-      inset: 9px;
-      border: 1px solid rgba(100, 63, 20, .58);
+      inset: 3px;
       border-radius: 50%;
+      border: 1px solid var(--gold-mid);
     }
 
     .seal-monogram {
       position: relative;
       z-index: 2;
-      color: #714a18;
+      font-family: "Great Vibes", cursive;
+      font-size: 32px;
+      color: var(--gold-dark);
+      text-shadow: 
+        1px 1px 1px rgba(255, 255, 255, 0.4),
+        -1px -1px 2px var(--gold-shadow);
+      line-height: 1;
     }
 
-    .seal-monogram .letter {
-      font-size: 29px;
-    }
-
-    .seal-monogram .ampersand {
-      font-size: 11px;
-      margin: 0 2px;
-      color: #714a18;
-    }
-
-    /* =========================================
-       TOCA PARA ABRIR
-    ========================================= */
     .open-text {
       margin-top: 31px;
       text-align: center;
@@ -311,9 +274,7 @@
       50% { opacity: 1; }
     }
 
-    /* =========================================
-       ANIMACIÓN DE APERTURA
-    ========================================= */
+    /* ANIMACIÓN APERTURA */
     .envelope-wrapper.open .seal {
       opacity: 0;
       transform: translate(-50%, -50%) scale(.6);
@@ -361,31 +322,19 @@
       pointer-events: none;
     }
 
-    /* =========================================
-       NOMBRES PRINCIPALES
-    ========================================= */
+    /* TÍTULO PRINCIPAL */
     .main-title {
       position: relative;
       z-index: 2;
       text-align: center;
-      font-family: "Bodoni Moda", serif;
-      font-size: clamp(38px, 8vw, 68px);
-      font-weight: 500;
-      color: var(--burgundy);
-      margin: 20px auto 40px;
-      line-height: 1.1;
-    }
-
-    .main-title .ampersand {
-      font-family: "Pinyon Script", cursive;
-      font-size: clamp(45px, 9vw, 75px);
+      font-family: "Great Vibes", cursive;
+      font-size: clamp(48px, 10vw, 82px);
       font-weight: 400;
-      margin: 0 10px;
+      color: var(--burgundy);
+      margin: 20px auto 35px;
+      line-height: 1.2;
     }
 
-    /* =========================================
-       FECHA, NOMBRES Y LUGAR
-    ========================================= */
     .wedding-date {
       position: relative;
       z-index: 2;
@@ -431,9 +380,7 @@
       opacity: .5;
     }
 
-    /* =========================================
-       HORARIOS
-    ========================================= */
+    /* DETALLES Y HORARIOS */
     .details {
       position: relative;
       z-index: 2;
@@ -476,9 +423,7 @@
       opacity: .5;
     }
 
-    /* =========================================
-       CONFIRMACIÓN
-    ========================================= */
+    /* CONFIRMACIÓN */
     .rsvp {
       position: relative;
       z-index: 2;
@@ -509,38 +454,20 @@
     .final-monogram {
       position: relative;
       z-index: 2;
+      text-align: center;
       margin-top: 42px;
+      font-family: "Great Vibes", cursive;
+      font-size: 42px;
+      color: var(--burgundy);
     }
 
-    .final-monogram .letter {
-      font-size: 49px;
-    }
-
-    .final-monogram .ampersand {
-      font-size: 17px;
-      margin: 0 5px;
-    }
-
-    /* =========================================
-       CELULAR
-    ========================================= */
+    /* RESPONSIVE CELULAR */
     @media (max-width: 520px) {
       .paper { padding: 7px; }
       .paper-border { padding: 52px 20px 42px; }
-      .main-title { margin-bottom: 30px; }
       .phrase { font-size: 16px; }
       .place { font-size: 20px; }
-      .seal { width: 70px; height: 70px; }
-    }
-
-    /* =========================================
-       ACCESIBILIDAD
-    ========================================= */
-    @media (prefers-reduced-motion: reduce) {
-      * {
-        animation: none !important;
-        transition: none !important;
-      }
+      .seal { width: 78px; height: 78px; }
     }
   </style>
 </head>
@@ -559,11 +486,7 @@
           </div>
 
           <div class="preview-card">
-            <div class="monogram preview-monogram">
-              <span class="letter">E</span>
-              <span class="ampersand">&amp;</span>
-              <span class="letter">A</span>
-            </div>
+            <div class="preview-monogram">E&amp;A</div>
           </div>
 
           <div class="envelope-front"></div>
@@ -574,10 +497,8 @@
           </div>
 
           <div class="seal">
-            <div class="monogram seal-monogram">
-              <span class="letter">E</span>
-              <span class="ampersand">&amp;</span>
-              <span class="letter">A</span>
+            <div class="seal-inner-ring">
+              <span class="seal-monogram">E&amp;A</span>
             </div>
           </div>
         </div>
@@ -592,9 +513,7 @@
     <section class="paper">
       <div class="paper-border">
 
-        <h1 class="main-title">
-          Estefy <span class="ampersand">&amp;</span> Andrés
-        </h1>
+        <h1 class="main-title">Estefy &amp; Andrés</h1>
 
         <div class="wedding-date">09 SEP 2026</div>
         <div class="city">OTAVALO</div>
@@ -623,11 +542,7 @@
           </a>
         </div>
 
-        <div class="monogram final-monogram">
-          <span class="letter">E</span>
-          <span class="ampersand">&amp;</span>
-          <span class="letter">A</span>
-        </div>
+        <div class="final-monogram">E&amp;A</div>
 
       </div>
     </section>
