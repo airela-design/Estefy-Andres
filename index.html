@@ -9,27 +9,24 @@
   <!-- TIPOGRAFÍAS -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=Great+Vibes&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
 
   <style>
     /* =========================================
-       PALETA Y VARIABLES
+       PALETA DE COLORES
     ========================================= */
     :root {
-      --burgundy: #681725;
-      --burgundy-dark: #4b0d18;
+      --burgundy: #58111a; /* Rojo vino más profundo y elegante */
+      --burgundy-dark: #3b0910;
       --cream: #f7f1e8;
       --paper: #fffaf3;
-      --gold-light: #f3e3ad;
-      --gold-mid: #d4a755;
-      --gold-base: #b08130;
-      --gold-dark: #6e4b10;
-      --gold-shadow: #422a03;
+      --gold-light: #fbe3ad;
+      --gold-mid: #d4a34b;
+      --gold-base: #aa7a2c;
+      --gold-dark: #6e4c11;
+      --gold-shadow: #3b2704;
     }
 
-    /* =========================================
-       GENERAL
-    ========================================= */
     * {
       box-sizing: border-box;
     }
@@ -89,7 +86,7 @@
       font-weight: 300;
       letter-spacing: 4px;
       text-transform: uppercase;
-      color: rgba(104, 23, 37, .65);
+      color: rgba(88, 17, 26, .65);
     }
 
     /* =========================================
@@ -107,7 +104,7 @@
       position: relative;
       width: 100%;
       aspect-ratio: 1.42 / 1;
-      filter: drop-shadow(0 24px 26px rgba(76,19,31,.17));
+      filter: drop-shadow(0 20px 24px rgba(59,9,16,.18));
     }
 
     .envelope-back {
@@ -124,7 +121,7 @@
       left: 7px;
       right: 7px;
       height: 74%;
-      background: linear-gradient(160deg, #791d30 0%, #681725 50%, #4d0d19 100%);
+      background: linear-gradient(160deg, #6d1522 0%, #58111a 50%, #3b0910 100%);
       clip-path: polygon(0 0, 100% 0, 50% 100%);
     }
 
@@ -140,7 +137,7 @@
       align-items: center;
       justify-content: center;
       background: var(--paper);
-      border: 1px solid rgba(104, 23, 37, .25);
+      border: 1px solid rgba(88, 17, 26, .25);
       transition: transform 1.5s cubic-bezier(.16, .83, .28, 1);
     }
 
@@ -148,12 +145,12 @@
       content: "";
       position: absolute;
       inset: 8px;
-      border: 1px solid rgba(104, 23, 37, .72);
+      border: 1px solid rgba(88, 17, 26, .72);
     }
 
     .preview-monogram {
-      font-family: "Great Vibes", cursive;
-      font-size: 52px;
+      font-family: "Alex Brush", cursive;
+      font-size: 60px;
       color: var(--burgundy);
     }
 
@@ -190,45 +187,43 @@
     .flap-back {
       position: absolute;
       inset: 0;
-      background: linear-gradient(160deg, #791d30, #51101c);
+      background: linear-gradient(160deg, #6d1522, #3b0910);
       clip-path: polygon(0 0, 100% 0, 50% 100%);
       transform: rotateX(180deg);
       backface-visibility: hidden;
     }
 
     /* =========================================
-       SELLO DE LACRE REALISTA (3D ORGANICO)
+       SELLO DE LACRE REALISTA (ESTAMPADO CERA)
     ========================================= */
     .seal {
       position: absolute;
       z-index: 10;
-      width: 86px;
-      height: 86px;
+      width: 82px;
+      height: 82px;
       left: 50%;
       top: 51%;
       transform: translate(-50%, -50%);
       display: flex;
       align-items: center;
       justify-content: center;
-      /* Borde orgánico irregular tipo cera derretida */
-      border-radius: 48% 52% 44% 56% / 53% 45% 55% 47%;
+      border-radius: 46% 54% 43% 57% / 55% 43% 57% 45%;
       background: 
-        radial-gradient(circle at 30% 25%, var(--gold-light) 0%, transparent 20%),
-        radial-gradient(circle at 70% 75%, var(--gold-dark) 0%, transparent 40%),
-        linear-gradient(135deg, var(--gold-mid) 0%, var(--gold-base) 50%, var(--gold-dark) 100%);
+        radial-gradient(circle at 35% 25%, var(--gold-light) 0%, transparent 25%),
+        radial-gradient(circle at 65% 75%, var(--gold-dark) 0%, transparent 45%),
+        linear-gradient(135deg, var(--gold-mid) 0%, var(--gold-base) 60%, var(--gold-dark) 100%);
       box-shadow: 
-        0 8px 18px rgba(0, 0, 0, 0.35),
-        inset 0 3px 6px rgba(255, 255, 255, 0.4),
-        inset 0 -4px 8px var(--gold-shadow);
+        0 8px 16px rgba(0, 0, 0, 0.38),
+        inset 0 2px 4px rgba(255, 255, 255, 0.6),
+        inset 0 -3px 6px var(--gold-shadow);
       transition: opacity .4s ease, transform .45s ease;
     }
 
-    /* Anillos grabaos interiores en el sello */
     .seal-inner-ring {
       position: absolute;
-      inset: 8px;
+      inset: 7px;
       border-radius: 50%;
-      border: 2px solid var(--gold-dark);
+      border: 2px solid #8e621d;
       box-shadow: 
         inset 0 1px 3px var(--gold-shadow),
         0 1px 2px rgba(255, 255, 255, 0.4);
@@ -240,21 +235,9 @@
     .seal-inner-ring::before {
       content: "";
       position: absolute;
-      inset: 3px;
+      inset: 2px;
       border-radius: 50%;
       border: 1px solid var(--gold-mid);
-    }
-
-    .seal-monogram {
-      position: relative;
-      z-index: 2;
-      font-family: "Great Vibes", cursive;
-      font-size: 32px;
-      color: var(--gold-dark);
-      text-shadow: 
-        1px 1px 1px rgba(255, 255, 255, 0.4),
-        -1px -1px 2px var(--gold-shadow);
-      line-height: 1;
     }
 
     .open-text {
@@ -265,7 +248,7 @@
       font-weight: 300;
       text-transform: uppercase;
       letter-spacing: 3.5px;
-      color: rgba(104, 23, 37, .62);
+      color: rgba(88, 17, 26, .62);
       animation: pulse 2.2s infinite;
     }
 
@@ -304,7 +287,7 @@
       width: min(710px, 100%);
       padding: 9px;
       background: var(--paper);
-      box-shadow: 0 22px 60px rgba(83, 18, 31, .09);
+      box-shadow: 0 22px 60px rgba(59, 9, 16, .09);
     }
 
     .paper-border {
@@ -318,21 +301,21 @@
       content: "";
       position: absolute;
       inset: 7px;
-      border: 1px solid rgba(104, 23, 37, .84);
+      border: 1px solid rgba(88, 17, 26, .84);
       pointer-events: none;
     }
 
-    /* TÍTULO PRINCIPAL */
+    /* TÍTULO PRINCIPAL (Alex Brush elegante) */
     .main-title {
       position: relative;
       z-index: 2;
       text-align: center;
-      font-family: "Great Vibes", cursive;
-      font-size: clamp(48px, 10vw, 82px);
+      font-family: "Alex Brush", cursive;
+      font-size: clamp(54px, 11vw, 92px);
       font-weight: 400;
       color: var(--burgundy);
       margin: 20px auto 35px;
-      line-height: 1.2;
+      line-height: 1.15;
     }
 
     .wedding-date {
@@ -409,7 +392,7 @@
     .place a {
       color: var(--burgundy);
       text-decoration: none;
-      border-bottom: 1px solid rgba(104, 23, 37, .35);
+      border-bottom: 1px solid rgba(88, 17, 26, .35);
       padding-bottom: 2px;
     }
 
@@ -456,18 +439,17 @@
       z-index: 2;
       text-align: center;
       margin-top: 42px;
-      font-family: "Great Vibes", cursive;
-      font-size: 42px;
+      font-family: "Alex Brush", cursive;
+      font-size: 48px;
       color: var(--burgundy);
     }
 
-    /* RESPONSIVE CELULAR */
     @media (max-width: 520px) {
       .paper { padding: 7px; }
       .paper-border { padding: 52px 20px 42px; }
       .phrase { font-size: 16px; }
       .place { font-size: 20px; }
-      .seal { width: 78px; height: 78px; }
+      .seal { width: 76px; height: 76px; }
     }
   </style>
 </head>
@@ -496,10 +478,9 @@
             <div class="flap-back"></div>
           </div>
 
+          <!-- SELLO LIMPIO SIN LETRAS EXTRA -->
           <div class="seal">
-            <div class="seal-inner-ring">
-              <span class="seal-monogram">E&amp;A</span>
-            </div>
+            <div class="seal-inner-ring"></div>
           </div>
         </div>
 
