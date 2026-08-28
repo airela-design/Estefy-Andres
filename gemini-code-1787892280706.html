@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f7f1e8">
+  <title>Estefy & Andrés | 09 SEP 2026</title>
+
+  <!-- TIPOGRAFÍAS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=Montserrat:wght@300;400&family=Pinyon+Script&display=swap" rel="stylesheet">
+
+  <style>
+    /* =========================================
+       PALETA
+    ========================================= */
+    :root {
+      --burgundy: #681725;
+      --burgundy-dark: #4b0d18;
+      --cream: #f7f1e8;
+      --paper: #fffaf3;
+      --paper-shadow: #eee3d7;
+      --gold-light: #e5c77e;
+      --gold: #c49a52;
+      --gold-dark: #906322;
+    }
+
+    /* =========================================
+       GENERAL
+    ========================================= */
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--cream);
+      color: var(--burgundy);
+      font-family: "Bodoni Moda", serif;
+    }
+
+    /* =========================================
+       MONOGRAMA E & A
+    ========================================= */
+    .monogram {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--burgundy);
+      white-space: nowrap;
+    }
+
+    .monogram .letter {
+      font-family: "Pinyon Script", cursive;
+      font-weight: 400;
+      line-height: .8;
+    }
+
+    .monogram .ampersand {
+      font-family: "Bodoni Moda", serif;
+      font-style: italic;
+      font-weight: 400;
+      line-height: 1;
+      margin: 0 .13em;
+      transform: translateY(.03em);
+    }
+
+    /* =========================================
+       PANTALLA DE APERTURA
+    ========================================= */
+    .intro {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100svh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      background: radial-gradient(
+        circle at center,
+        #fffaf4 0%,
+        #f7f1e8 62%,
+        #eee4d8 100%
+      );
+      transition: opacity 1s ease, visibility 1s ease;
+    }
+
+    .intro.hide {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .intro-content {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .invitation-for-you {
+      margin-bottom: 38px;
+      font-family: "Montserrat", sans-serif;
+      font-size: 9px;
+      font-weight: 300;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: rgba(104, 23, 37, .65);
+    }
+
+    /* =========================================
+       SOBRE
+    ========================================= */
+    .envelope-wrapper {
+      position: relative;
+      width: min(430px, 86vw);
+      perspective: 1500px;
+      cursor: pointer;
+      outline: none;
+    }
+
+    .envelope {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1.42 / 1;
+      filter: drop-shadow(0 24px 26px rgba(76,19,31,.17));
+    }
+
+    .envelope-back {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      border-radius: 4px;
+      background: linear-gradient(145deg, #fffaf3, #eee3d6);
+    }
+
+    .envelope-liner {
+      position: absolute;
+      top: 0;
+      left: 7px;
+      right: 7px;
+      height: 74%;
+      background: linear-gradient(160deg, #791d30 0%, #681725 50%, #4d0d19 100%);
+      clip-path: polygon(0 0, 100% 0, 50% 100%);
+    }
+
+    /* =========================================
+       TARJETA DENTRO DEL SOBRE
+    ========================================= */
+    .preview-card {
+      position: absolute;
+      z-index: 3;
+      width: 84%;
+      height: 88%;
+      left: 8%;
+      top: 8%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--paper);
+      border: 1px solid rgba(104, 23, 37, .25);
+      transition: transform 1.5s cubic-bezier(.16, .83, .28, 1);
+    }
+
+    .preview-card::after {
+      content: "";
+      position: absolute;
+      inset: 8px;
+      border: 1px solid rgba(104, 23, 37, .72);
+    }
+
+    .preview-monogram {
+      position: relative;
+      z-index: 2;
+    }
+
+    .preview-monogram .letter {
+      font-size: 72px;
+    }
+
+    .preview-monogram .ampersand {
+      font-size: 27px;
+      margin: 0 6px;
+    }
+
+    /* =========================================
+       FRENTE DEL SOBRE
+    ========================================= */
+    .envelope-front {
+      position: absolute;
+      inset: 0;
+      z-index: 5;
+      background: linear-gradient(145deg, #fffaf3, #eee3d7);
+      clip-path: polygon(0 26%, 50% 69%, 100% 26%, 100% 100%, 0 100%);
+    }
+
+    .envelope-front::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: .32;
+      background: linear-gradient(34deg, transparent 49.8%, rgba(105,75,65,.20) 50%, transparent 50.2%);
+    }
+
+    /* =========================================
+       SOLAPA
+    ========================================= */
+    .flap {
+      position: absolute;
+      width: 100%;
+      height: 66%;
+      top: 0;
+      left: 0;
+      z-index: 7;
+      transform-origin: top center;
+      transform-style: preserve-3d;
+      transition: transform 1.05s cubic-bezier(.2, .75, .25, 1);
+    }
+
+    .flap-front {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, #fffaf3, #eee3d7);
+      clip-path: polygon(0 0, 100% 0, 50% 100%);
+      backface-visibility: hidden;
+    }
+
+    .flap-back {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(160deg, #791d30, #51101c);
+      clip-path: polygon(0 0, 100% 0, 50% 100%);
+      transform: rotateX(180deg);
+      backface-visibility: hidden;
+    }
+
+    /* =========================================
+       SELLO DORADO
+    ========================================= */
+    .seal {
+      position: absolute;
+      z-index: 10;
+      width: 76px;
+      height: 76px;
+      left: 50%;
+      top: 51%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 47% 53% 45% 55% / 54% 44% 56% 46%;
+      background: 
+        radial-gradient(circle at 35% 28%, var(--gold-light), transparent 14%),
+        radial-gradient(circle, #d1aa61, var(--gold) 60%, var(--gold-dark));
+      box-shadow: 
+        0 5px 12px rgba(48,27,5,.32),
+        inset 0 0 0 3px rgba(255,238,185,.30);
+      transition: opacity .4s ease, transform .45s ease;
+    }
+
+    .seal::before {
+      content: "";
+      position: absolute;
+      inset: 9px;
+      border: 1px solid rgba(100, 63, 20, .58);
+      border-radius: 50%;
+    }
+
+    .seal-monogram {
+      position: relative;
+      z-index: 2;
+      color: #714a18;
+    }
+
+    .seal-monogram .letter {
+      font-size: 29px;
+    }
+
+    .seal-monogram .ampersand {
+      font-size: 11px;
+      margin: 0 2px;
+      color: #714a18;
+    }
+
+    /* =========================================
+       TOCA PARA ABRIR
+    ========================================= */
+    .open-text {
+      margin-top: 31px;
+      text-align: center;
+      font-family: "Montserrat", sans-serif;
+      font-size: 9px;
+      font-weight: 300;
+      text-transform: uppercase;
+      letter-spacing: 3.5px;
+      color: rgba(104, 23, 37, .62);
+      animation: pulse 2.2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: .42; }
+      50% { opacity: 1; }
+    }
+
+    /* =========================================
+       ANIMACIÓN DE APERTURA
+    ========================================= */
+    .envelope-wrapper.open .seal {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(.6);
+    }
+
+    .envelope-wrapper.open .flap {
+      transform: rotateX(180deg);
+      z-index: 1;
+    }
+
+    .envelope-wrapper.open .preview-card {
+      transform: translateY(-73%);
+    }
+
+    /* =========================================
+       INVITACIÓN PRINCIPAL
+    ========================================= */
+    .invitation {
+      min-height: 100svh;
+      padding: 20px 14px 60px;
+      display: flex;
+      justify-content: center;
+      background: radial-gradient(circle at top, #fffdf9, var(--cream));
+    }
+
+    .paper {
+      width: min(710px, 100%);
+      padding: 9px;
+      background: var(--paper);
+      box-shadow: 0 22px 60px rgba(83, 18, 31, .09);
+    }
+
+    .paper-border {
+      position: relative;
+      min-height: 96svh;
+      border: 1px solid var(--burgundy);
+      padding: 64px 34px 51px;
+    }
+
+    .paper-border::before {
+      content: "";
+      position: absolute;
+      inset: 7px;
+      border: 1px solid rgba(104, 23, 37, .84);
+      pointer-events: none;
+    }
+
+    /* =========================================
+       MONOGRAMA PRINCIPAL
+    ========================================= */
+    .main-monogram {
+      position: relative;
+      z-index: 2;
+      margin: 10px auto 48px;
+    }
+
+    .main-monogram .letter {
+      font-size: clamp(90px, 19vw, 143px);
+    }
+
+    .main-monogram .ampersand {
+      font-size: clamp(32px, 6vw, 47px);
+      margin: 0 .15em;
+    }
+
+    /* =========================================
+       SAVE THE DATE
+    ========================================= */
+    .save-the-date {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      color: var(--burgundy);
+      margin-bottom: 49px;
+    }
+
+    .save {
+      display: block;
+      font-family: "Bodoni Moda", serif;
+      font-size: clamp(57px, 12vw, 94px);
+      font-weight: 500;
+      line-height: .82;
+      letter-spacing: -4px;
+    }
+
+    .the {
+      display: block;
+      font-family: "Pinyon Script", cursive;
+      font-size: clamp(54px, 11vw, 84px);
+      font-weight: 400;
+      line-height: .72;
+      margin: 15px 0 12px;
+      text-transform: none;
+    }
+
+    .date-word {
+      display: block;
+      font-family: "Bodoni Moda", serif;
+      font-size: clamp(57px, 12vw, 94px);
+      font-weight: 500;
+      line-height: .83;
+      letter-spacing: -4px;
+    }
+
+    /* =========================================
+       FECHA, NOMBRES Y LUGAR
+    ========================================= */
+    .wedding-date {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      font-family: "Montserrat", sans-serif;
+      font-size: 10px;
+      font-weight: 300;
+      letter-spacing: 4px;
+      margin-bottom: 15px;
+    }
+
+    .names {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      font-family: "Montserrat", sans-serif;
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 9px;
+    }
+
+    .city {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      font-family: "Montserrat", sans-serif;
+      font-size: 10px;
+      font-weight: 300;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 46px;
+    }
+
+    .phrase {
+      position: relative;
+      z-index: 2;
+      width: min(390px, 90%);
+      margin: 0 auto 36px;
+      text-align: center;
+      font-family: "Bodoni Moda", serif;
+      font-size: 17px;
+      line-height: 1.65;
+      font-style: italic;
+    }
+
+    .divider {
+      position: relative;
+      z-index: 2;
+      width: 48px;
+      height: 1px;
+      margin: 0 auto 35px;
+      background: var(--burgundy);
+      opacity: .5;
+    }
+
+    /* =========================================
+       HORARIOS
+    ========================================= */
+    .details {
+      position: relative;
+      z-index: 2;
+      max-width: 430px;
+      margin: auto;
+    }
+
+    .event {
+      text-align: center;
+      padding: 15px 5px 20px;
+    }
+
+    .time {
+      margin-bottom: 8px;
+      font-family: "Montserrat", sans-serif;
+      font-size: 9px;
+      font-weight: 400;
+      letter-spacing: 3px;
+    }
+
+    .place {
+      font-family: "Bodoni Moda", serif;
+      font-size: 21px;
+    }
+
+    .place a {
+      color: var(--burgundy);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(104, 23, 37, .35);
+      padding-bottom: 2px;
+    }
+
+    .map-text {
+      margin-top: 9px;
+      font-family: "Montserrat", sans-serif;
+      font-size: 7px;
+      font-weight: 300;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      opacity: .5;
+    }
+
+    /* =========================================
+       CONFIRMACIÓN
+    ========================================= */
+    .rsvp {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      margin-top: 37px;
+    }
+
+    .rsvp-button {
+      display: inline-block;
+      padding: 15px 29px;
+      background: var(--burgundy);
+      color: var(--paper);
+      border: 1px solid var(--burgundy);
+      text-decoration: none;
+      font-family: "Montserrat", sans-serif;
+      font-size: 9px;
+      font-weight: 300;
+      letter-spacing: 2.3px;
+      text-transform: uppercase;
+      transition: all .3s ease;
+    }
+
+    .rsvp-button:hover {
+      background: transparent;
+      color: var(--burgundy);
+    }
+
+    .final-monogram {
+      position: relative;
+      z-index: 2;
+      margin-top: 42px;
+    }
+
+    .final-monogram .letter {
+      font-size: 49px;
+    }
+
+    .final-monogram .ampersand {
+      font-size: 17px;
+      margin: 0 5px;
+    }
+
+    /* =========================================
+       CELULAR
+    ========================================= */
+    @media (max-width: 520px) {
+      .paper { padding: 7px; }
+      .paper-border { padding: 52px 20px 42px; }
+      .main-monogram { margin-bottom: 42px; }
+      .save, .date-word { letter-spacing: -2px; }
+      .phrase { font-size: 16px; }
+      .place { font-size: 20px; }
+      .seal { width: 70px; height: 70px; }
+    }
+
+    /* =========================================
+       ACCESIBILIDAD
+    ========================================= */
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- PANTALLA INICIAL -->
+  <section class="intro" id="intro">
+    <div class="intro-content">
+      <div class="invitation-for-you">Una invitación para ti</div>
+
+      <div class="envelope-wrapper" id="envelope" role="button" tabindex="0" aria-label="Toca para abrir la invitación">
+        <div class="envelope">
+          <div class="envelope-back">
+            <div class="envelope-liner"></div>
+          </div>
+
+          <div class="preview-card">
+            <div class="monogram preview-monogram">
+              <span class="letter">E</span>
+              <span class="ampersand">&amp;</span>
+              <span class="letter">A</span>
+            </div>
+          </div>
+
+          <div class="envelope-front"></div>
+
+          <div class="flap">
+            <div class="flap-front"></div>
+            <div class="flap-back"></div>
+          </div>
+
+          <div class="seal">
+            <div class="monogram seal-monogram">
+              <span class="letter">E</span>
+              <span class="ampersand">&amp;</span>
+              <span class="letter">A</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="open-text">Toca para abrir</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INVITACIÓN PRINCIPAL -->
+  <main class="invitation">
+    <section class="paper">
+      <div class="paper-border">
+
+        <div class="monogram main-monogram">
+          <span class="letter">E</span>
+          <span class="ampersand">&amp;</span>
+          <span class="letter">A</span>
+        </div>
+
+        <div class="save-the-date">
+          <span class="save">SAVE</span>
+          <span class="the">the</span>
+          <span class="date-word">DATE</span>
+        </div>
+
+        <div class="wedding-date">09 SEP 2026</div>
+        <div class="names">ESTEFY &amp; ANDRÉS</div>
+        <div class="city">OTAVALO</div>
+
+        <p class="phrase">Nos hará mucha ilusión compartir este día contigo.</p>
+        <div class="divider"></div>
+
+        <div class="details">
+          <div class="event">
+            <div class="time">15H00</div>
+            <div class="place">Registro Civil · Otavalo</div>
+          </div>
+
+          <div class="event">
+            <div class="time">16H30</div>
+            <div class="place">
+              <a href="https://maps.google.com/?q=0.256863,-78.241318" target="_blank" rel="noopener">Peguche</a>
+            </div>
+            <div class="map-text">Ver ubicación</div>
+          </div>
+        </div>
+
+        <div class="rsvp">
+          <a class="rsvp-button" href="https://wa.me/593984276163?text=Hola%2C%20confirmo%20mi%20asistencia%20a%20la%20boda%20de%20Estefy%20%26%20Andr%C3%A9s.%0A%0AMi%20nombre%20es%3A%20" target="_blank" rel="noopener">
+            Confirma tu asistencia
+          </a>
+        </div>
+
+        <div class="monogram final-monogram">
+          <span class="letter">E</span>
+          <span class="ampersand">&amp;</span>
+          <span class="letter">A</span>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const envelope = document.getElementById("envelope");
+    const intro = document.getElementById("intro");
+    let opened = false;
+
+    function openInvitation() {
+      if (opened) return;
+      opened = true;
+
+      envelope.classList.add("open");
+
+      setTimeout(() => {
+        intro.classList.add("hide");
+      }, 2300);
+    }
+
+    envelope.addEventListener("click", openInvitation);
+
+    envelope.addEventListener("keydown", event => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        openInvitation();
+      }
+    });
+  </script>
+</body>
+</html>
